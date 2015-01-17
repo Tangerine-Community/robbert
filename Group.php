@@ -129,8 +129,6 @@ class Group
 
 		$con = $this->config;
 
-		file_put_contents( "loggy.log", $con->group_db_url( $this->name, "main"));
-
 		// Create a blank database
 		$put_response = h\Request::put( $con->group_db_url( $this->name, "main" ) )
 			->authenticateWith( $con->constants->ADMIN_U, $con->constants->ADMIN_P )
