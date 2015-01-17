@@ -23,6 +23,7 @@ class ConfigHelper
 		if ( ! isset( $c->SERVER_NICKNAME ) ) throw new LogicException('Config missing SERVER_NICKNAME.');
 		if ( ! isset( $c->D_DOC ) )           throw new LogicException('Config missing D_DOC.');
 		if ( ! isset( $c->APP_DOCS ) )        throw new LogicException('Config missing APP_DOCS.');
+		if ( ! isset( $c->DB_PREFIX ) )       throw new LogicException('Config missing DB_PREFIX.');
 
 	}
 
@@ -54,7 +55,7 @@ class ConfigHelper
 
 	public function db_url( $db_name = "", $server_handle = null, $admin = false )
 	{
-		return $this->path_join( $this->get_host( $server_handle, $admin ), $db_name );
+		return $this->path_join( $this->get_host( $server_handle, $admin ), $this->constants->DB_PREFIX, $db_name );
 	}
 
 	public function group_db_name( $group_name = "", $server_handle = null )
@@ -71,7 +72,7 @@ class ConfigHelper
 
 	public function group_db_url( $group_name = "", $server_handle = null, $admin = false )
 	{
-		return $this->path_join( $this->get_host( $server_handle, $admin ), $this->group_db_name( $group_name, $server_handle ) );
+		return $this->path_join( $this->get_host( $server_handle, $admin ), $this->constants->DB_PREFIX, $this->group_db_name( $group_name, $server_handle ) );
 	}
 
 	public function get_host( $server_handle = "", $admin = false )

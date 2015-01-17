@@ -170,6 +170,8 @@ class User
 	public function authenticate()
 	{
 
+                file_put_contents("/www/robbert/loggy.log", $this->config->user_doc_url( $this->name, "main") );
+
 		$response_raw = h\Request::get( $this->config->user_doc_url( $this->name, "main" ) )
 			->authenticateWith( $this->name, $this->pass )
 			->sendsJson()
