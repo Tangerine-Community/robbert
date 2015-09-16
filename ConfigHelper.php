@@ -97,6 +97,12 @@ class ConfigHelper
 
 	} // END of get_host
 
+
+        function get_prefixed_host( $location = "" )
+	{
+		return $this->path_join( $this->get_host( $location ), $this->constants->DB_PREFIX );
+	}
+
 	/**
 	 * Joins directories 
 	 * @param arguments Takes all arguments and joins them.
